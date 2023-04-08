@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pointcloud-explorer"
+version = "0.0.1"
+description = "Pointcloud explorer"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "open3d",
+    "fire",
+    "numpy",
+]
+
+
+[project.optional-dependencies]
+# dev dependencies
+dev = [
+  "pytest==7.1.2",
+  "pytest-xdist==2.5.0",
+  "typeguard>=2.13.3",
+]
+
+#pytest
+[tool.pytest.ini_options]
+addopts = "-n=4 --typeguard-packages=dataset_utils --disable-warnings"
+testpaths = [
+    "tests",
+]
+
+[project.scripts]
+# # Note, add entrypoint name to scripts/completions/install.py to include CLI completion
+# viz = "dataset_utils.visualiser.viz:entrypoint"
+explore-pcd = "main:entrypoint"
